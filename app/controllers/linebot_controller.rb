@@ -12,7 +12,7 @@ class LinebotController < ApplicationController
           # LINEから送られてきたメッセージが「マルバツ」と一致するかチェック
           if event.message['text'].eql('マルバツ')
             # private内のtemplateメソッドを呼び出す。
-            client.reply_message(event['replyToken'], template)
+            client.reply_message(event['replyToken'].template)
           end
         end
       end
@@ -23,27 +23,27 @@ class LinebotController < ApplicationController
 
   private
 
-    def template {
-      type: :template,
-      altText: "this is a confirm template",
-      template: {
-        type: :confirm,
-        text: "!a とは aがtrueの場合に false を、aがfalseの場合にtrueを返す論理演算子である"
-        actions: [
-          {
-          type: :message,
-            # Botから送られてきたメッセージに表示される文字列です。
-            label: "○",
-            # ボタンを押した時にBotに送られる文字列です。
-            text: "○"
-          },
-          {
-          type: :message,
-          label: "×",
-          text: "×"
-          }
-        ]
-      }
-    }
+    def template
+        type: :template,
+        altText: "this is a confirm template",
+        template: {
+          type: :confirm,
+          text: "!a とは aがtrueの場合に false を、aがfalseの場合にtrueを返す論理演算子である"
+          actions = [
+            {
+              type: "message",
+                # Botから送られてきたメッセージに表示される文字列です。
+              label: "True",
+                # ボタンを押した時にBotに送られる文字列です。
+              text: "True"
+            },
+            {
+              type: "message",
+              label: "False",
+              text: "False"
+            }
+          ]
+        }
+    end
   end
 end
