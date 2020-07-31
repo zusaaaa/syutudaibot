@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
     end
-  end  
+  end
 
   def client
     @client ||= Line::Bot::Client.new { |config|
