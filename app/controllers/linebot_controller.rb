@@ -24,21 +24,21 @@ class LinebotController < ApplicationController
   private
 
     def template {
-      type: "template",
+      type: :template,
       altText: "this is a confirm template",
       template: {
-        type: "confirm",
+        type: :confirm,
         text: "!a とは aがtrueの場合に false を、aがfalseの場合にtrueを返す論理演算子である"
         actions: [
           {
-          type: "message",
+          type: :message,
             # Botから送られてきたメッセージに表示される文字列です。
             label: "○",
             # ボタンを押した時にBotに送られる文字列です。
             text: "○"
           },
           {
-          type: "message",
+          type: :message,
           label: "×",
           text: "×"
           }
